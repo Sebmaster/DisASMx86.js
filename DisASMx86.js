@@ -2953,36 +2953,6 @@
 	};
 	
 	/**
-	 * Parses operand type G.
-	 * 
-	 * @private
-	 * @param {Array.<number>|Uint8Array} buf the buffer to parse
-	 * @param {number} offset the offset to parse from
-	 * @param {Object} operation the operation to parse
-	 * @param {string} opType the size of the operand
-	 * @return {str: string, len: number}
-	 */
-	DisASMx86.prototype.parseTypeG = function(buf, offset, operation, opSize) {
-		var modRM = this.parseModRM(buf[offset]);
-		var size;
-		
-		switch (opSize) {
-			case 'v':
-			case 'vqp':
-			case 'vds':
-				size = this.modeConfig.operSize === 32 ? 32 : 16;
-				break;
-			case 'b':
-				size = 8;
-				break;
-			default:
-				throw 'OpSize ' + opSize + ' unknown!';
-		}
-		
-		return {str: modRM.dest[this.getRegisterMode(size, operation.instrExt)], len: 1};
-	};
-	
-	/**
 	 * Parses operand type E.
 	 * 
 	 * @private
@@ -3022,6 +2992,36 @@
 		}
 		
 		return {str: str, len: len};
+	};
+	
+	/**
+	 * Parses operand type G.
+	 * 
+	 * @private
+	 * @param {Array.<number>|Uint8Array} buf the buffer to parse
+	 * @param {number} offset the offset to parse from
+	 * @param {Object} operation the operation to parse
+	 * @param {string} opType the size of the operand
+	 * @return {str: string, len: number}
+	 */
+	DisASMx86.prototype.parseTypeG = function(buf, offset, operation, opSize) {
+		var modRM = this.parseModRM(buf[offset]);
+		var size;
+		
+		switch (opSize) {
+			case 'v':
+			case 'vqp':
+			case 'vds':
+				size = this.modeConfig.operSize === 32 ? 32 : 16;
+				break;
+			case 'b':
+				size = 8;
+				break;
+			default:
+				throw 'OpSize ' + opSize + ' unknown!';
+		}
+		
+		return {str: modRM.dest[this.getRegisterMode(size, operation.instrExt)], len: 1};
 	};
 	
 	/**
