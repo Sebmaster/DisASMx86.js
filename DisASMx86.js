@@ -6455,35 +6455,6 @@
 		}
 		offset = sharedLen + ownOffset;
 		
-		
-		/*
-		if (operation.modRM) {
-			modRM = this.parseModRM(buf[offset]);
-			offset++;
-			
-			if (modRM.src.sib) {
-				sib = this.parseSIB(buf[offset]);
-				offset++;
-			}
-		
-			if (modRM.src.displ) {
-				displacement = 0;
-				for (var i=0; i < modRM.src.displ; ++i, ++offset) {
-					displacement += buf[offset] * Math.pow(2, i * 8);
-				}
-				if (displacement > 127) {
-					displacement -= 256;
-				}
-			}
-		}
-		
-		if (operation.immed) {
-			immediate = 0;
-			for (var i=0; i < config.addrSize; ++i, ++offset) { // TODO: Check if addrSize is the correct one for this
-				immediate += buf[offset] * Math.pow(2, i * 8);
-			}
-		}*/
-		
 		return {
 			prefixes: prefixes,
 			operation: operation,
