@@ -5967,7 +5967,7 @@
 			} else {
 				return 'r' + size;
 			}
-		} else if (instr_ext === 'mmx' && size === 64) {
+		} else if (instrExt === 'mmx' && size === 64) {
 			return 'mm';
 		} else if (instrExt === 'sse' && size === 128) {
 			return 'xmm';
